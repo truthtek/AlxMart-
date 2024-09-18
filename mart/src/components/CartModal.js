@@ -1,11 +1,14 @@
+
 import React from 'react';
 
-const Cart = ({ cart, total, toggleCart, checkout }) => {
+function CartModal({ isOpen, cart, total, toggleCart, checkout }) {
+  if (!isOpen) return null;
+
   return (
-    <div id="cartModal" className="cart-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center" role="dialog" aria-hidden="true" aria-labelledby="cartModalTitle">
+    <div className="cart-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center" role="dialog" aria-labelledby="cartModalTitle">
       <div className="cart-modal-content neumorphic p-6 rounded-lg max-w-md w-full">
         <h2 id="cartModalTitle" className="text-2xl font-bold mb-4">Your Cart</h2>
-        <ul className="mb-4">
+        <ul id="cartItems" className="mb-4">
           {cart.map((item, index) => (
             <li key={index}>{item.name} - ${item.price.toFixed(2)}</li>
           ))}
@@ -24,4 +27,4 @@ const Cart = ({ cart, total, toggleCart, checkout }) => {
   );
 }
 
-export default Cart;
+export default CartModal;
