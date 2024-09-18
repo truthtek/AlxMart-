@@ -10,19 +10,11 @@ import DarkModeToggle from './components/DarkModeToggle';
 import './index.css';
 
 const products = [
-  { name: "Fresh Apples", price: 2.50, image: "https://picsum.photos/300/200?random=1" },
-  { name: "Organic Bananas", price: 1.20, image: "https://picsum.photos/300/200?random=2" },
-  { name: "Whole Wheat Bread", price: 3.00, image: "https://picsum.photos/300/200?random=3" },
-  { name: "Fresh Milk", price: 2.80, image: "https://picsum.photos/300/200?random=4" },
-  { name: "Eggs (12 Pack)", price: 4.50, image: "https://picsum.photos/300/200?random=5" },
-  { name: "Orange Juice", price: 3.75, image: "https://picsum.photos/300/200?random=6" }
+  // ... your product data
 ];
 
 const discountedProducts = [
-  { name: "Cereal - 20% off", price: 3.00, image: "https://picsum.photos/300/200?random=7" },
-  { name: "Pasta - 15% off", price: 1.50, image: "https://picsum.photos/300/200?random=8" },
-  { name: "Chips - 10% off", price: 2.25, image: "https://picsum.photos/300/200?random=9" },
-  { name: "Canned Beans - 25% off", price: 1.00, image: "https://picsum.photos/300/200?random=10" }
+  // ... your discounted product data
 ];
 
 function App() {
@@ -69,5 +61,31 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header cartCount={cart.length} toggleCart={toggleCart}>
-        <input // Search bar within Header
+        <input
           type="text"
+          placeholder="Search for products..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="border rounded-md px-3 py-2" // Add styling for the search bar
+        />
+      </Header>
+      <main className="flex-grow">
+        <Hero />
+        <Categories />
+        <ProductList products={filteredProducts} addToCart={addToCart} /> // Use filteredProducts for search results
+        <DiscountedProducts products={discountedProducts} addToCart={addToCart} />
+      </main>
+      <CartModal
+        isOpen={isCartOpen}
+        cart={cart}
+        total={total}
+        toggleCart={toggleCart}
+        checkout={checkout}
+      />
+      <Footer />
+      <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+    </div>
+  );
+}
+
+export default App;
