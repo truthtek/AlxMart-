@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeroSection = () => {
+function Hero() {
   return (
     <section className="hero-section mb-8">
       <div className="hero-content animate__animated animate__fadeIn">
@@ -11,4 +11,4 @@ const HeroSection = () => {
   );
 }
 
-export default HeroSection;
+export default Hero;
