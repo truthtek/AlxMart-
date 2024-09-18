@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -31,6 +30,8 @@ function App() {
   const [total, setTotal] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
+  const [filteredProducts, setFilteredProducts] = useState(products); // State for filtered products
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', darkMode);
@@ -52,26 +53,21 @@ function App() {
     setIsCartOpen(false);
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase()); // Lowercase for case-insensitive search
+  };
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(products); // Reset to all products when search term is empty
+    }
+  }, [searchTerm]); // Dependency on searchTerm for filtering
+
   return (
     <div className="min-h-screen flex flex-col">
-      <Header cartCount={cart.length} toggleCart={toggleCart} />
-      <main className="flex-grow">
-        <Hero />
-        <Categories />
-        <ProductList products={products} addToCart={addToCart} />
-        <DiscountedProducts products={discountedProducts} addToCart={addToCart} />
-      </main>
-      <CartModal
-        isOpen={isCartOpen}
-        cart={cart}
-        total={total}
-        toggleCart={toggleCart}
-        checkout={checkout}
-      />
-      <Footer />
-      <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
-    </div>
-  );
-}
-
-export default App;
+      <Header cartCount={cart.length} toggleCart={toggleCart}>
+        <input // Search bar within Header
+          type="text"
