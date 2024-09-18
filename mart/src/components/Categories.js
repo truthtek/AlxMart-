@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CategorySection = () => {
+function Categories() {
   return (
     <section aria-labelledby="categoriesTitle" className="mb-8 p-4">
       <h2 id="categoriesTitle" className="text-2xl font-bold mb-4">Shop by Category</h2>
@@ -26,4 +26,4 @@ const CategorySection = () => {
   );
 }
 
-export default CategorySection;
+export default Categories;
