@@ -12,18 +12,18 @@ import './index.css';
 
 const products = [
   { name: "Fresh Apples", price: 2.50, image: "https://pixabay.com/photos/apple-red-fruit-red-chief-1702316/" },
-  { name: "Organic Bananas", price: 1.20, image: "https://picsum.photos/300/200?random=2" },
-  { name: "Whole Wheat Bread", price: 3.00, image: "https://picsum.photos/300/200?random=3" },
-  { name: "Fresh Milk", price: 2.80, image: "https://picsum.photos/300/200?random=4" },
-  { name: "Eggs (12 Pack)", price: 4.50, image: "https://picsum.photos/300/200?random=5" },
-  { name: "Orange Juice", price: 3.75, image: "https://picsum.photos/300/200?random=6" }
+  { name: "Organic Bananas", price: 1.20, image: "https://pin.it/6JY8Hec5U" },
+  { name: "Whole Wheat Bread", price: 3.00, image: "https://pin.it/4n2ACbMTh" },
+  { name: "Fresh Milk", price: 2.80, image: "https://pin.it/6NoZ6zAgW" },
+  { name: "Eggs (12 Pack)", price: 4.50, image: "https://pin.it/4Org4fhAl" },
+  { name: "Orange Juice", price: 3.75, image: "https://pin.it/3YFFelnri" }
 ];
 
 const discountedProducts = [
-  { name: "Cereal - 20% off", price: 3.00, image: "https://picsum.photos/300/200?random=7" },
-  { name: "Pasta - 15% off", price: 1.50, image: "https://picsum.photos/300/200?random=8" },
-  { name: "Chips - 10% off", price: 2.25, image: "https://picsum.photos/300/200?random=9" },
-  { name: "Canned Beans - 25% off", price: 1.00, image: "https://picsum.photos/300/200?random=10" }
+  { name: "Cereal - 20% off", price: 3.00, image: "https://pin.it/4OJThR4GM" },
+  { name: "Pasta - 15% off", price: 1.50, image: "https://pin.it/3WVdVcdFl" },
+  { name: "Chips - 10% off", price: 2.25, image: "https://pin.it/2ZVzvj8il" },
+  { name: "Canned Beans - 25% off", price: 1.00, image: "https://pin.it/4f1cLPCG8" }
 ];
 
 function App() {
