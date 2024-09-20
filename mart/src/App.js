@@ -11,7 +11,7 @@ import DarkModeToggle from './components/DarkModeToggle';
 import './index.css';
 
 const products = [
-  { name: "Fresh Apples", price: 2.50, image: "https://picsum.photos/300/200?random=1" },
+  { name: "Fresh Apples", price: 2.50, image: "https://pixabay.com/photos/apple-red-fruit-red-chief-1702316/" },
   { name: "Organic Bananas", price: 1.20, image: "https://picsum.photos/300/200?random=2" },
   { name: "Whole Wheat Bread", price: 3.00, image: "https://picsum.photos/300/200?random=3" },
   { name: "Fresh Milk", price: 2.80, image: "https://picsum.photos/300/200?random=4" },
