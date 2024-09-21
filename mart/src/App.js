@@ -10,10 +10,7 @@ import Footer from './components/Footer';
 import DarkModeToggle from './components/DarkModeToggle';
 import './index.css';
 
-function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+
   const products = [
   { name: "Fresh Apples", price: 2.50, image: "https://picsum.photos/300/200?random=1" },
   { name: "Organic Bananas", price: 1.20, image: "https://picsum.photos/300/200?random=2" },
@@ -35,7 +32,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-
+  
   useEffect(() => {
     document.body.classList.toggle('dark-mode', darkMode);
   }, [darkMode]);
@@ -76,3 +73,4 @@ function App() {
       <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
     </div>
   );
+}
