@@ -8,7 +8,7 @@ import DiscountedProducts from './components/DiscountedProducts';
 import CartModal from './components/CartModal';
 import Footer from './components/Footer';
 import DarkModeToggle from './components/DarkModeToggle';
-import './styles.css';
+import './index.css';
 
 const products = [
   { name: "Fresh Apples", price: 2.50, image: "https://picsum.photos/300/200?random=1" },
