@@ -8,7 +8,7 @@ import DiscountedProducts from './components/DiscountedProducts';
 import CartModal from './components/CartModal';
 import Footer from './components/Footer';
 import DarkModeToggle from './components/DarkModeToggle';
-
+import './index.css';
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [cartItems, setCartItems] = useState([]);
