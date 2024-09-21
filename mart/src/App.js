@@ -10,8 +10,7 @@ import Footer from './components/Footer';
 import DarkModeToggle from './components/DarkModeToggle';
 import './index.css';
 
-
-  const products = [
+const products = [
   { name: "Fresh Apples", price: 2.50, image: "https://picsum.photos/300/200?random=1" },
   { name: "Organic Bananas", price: 1.20, image: "https://picsum.photos/300/200?random=2" },
   { name: "Whole Wheat Bread", price: 3.00, image: "https://picsum.photos/300/200?random=3" },
@@ -26,6 +25,7 @@ const discountedProducts = [
   { name: "Chips - 10% off", price: 2.25, image: "https://picsum.photos/300/200?random=9" },
   { name: "Canned Beans - 25% off", price: 1.00, image: "https://picsum.photos/300/200?random=10" }
 ];
+  
 
 function App() {
   const [cart, setCart] = useState([]);
