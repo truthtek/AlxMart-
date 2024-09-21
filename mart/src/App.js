@@ -53,6 +53,15 @@ function App() {
     setIsCartOpen(false);
   };
 
+  const handleSearch = useCallback((searchTerm) => {
+    const lowercasedTerm = searchTerm.toLowerCase();
+    const filtered = products.filter(product => 
+      product.name.toLowerCase().includes(lowercasedTerm) ||
+      product.description.toLowerCase().includes(lowercasedTerm)
+    );
+    setFilteredProducts(filtered);
+  }, [products]);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header cartCount={cart.length} toggleCart={toggleCart} />
