@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Categories from './components/Categories';
@@ -8,22 +8,37 @@ import DiscountedProducts from './components/DiscountedProducts';
 import CartModal from './components/CartModal';
 import Footer from './components/Footer';
 import DarkModeToggle from './components/DarkModeToggle';
-import './index.css';
+import './styles.css';
+
+const products = [
+  { name: "Fresh Apples", price: 2.50, image: "https://picsum.photos/300/200?random=1" },
+  { name: "Organic Bananas", price: 1.20, image: "https://picsum.photos/300/200?random=2" },
+  { name: "Whole Wheat Bread", price: 3.00, image: "https://picsum.photos/300/200?random=3" },
+  { name: "Fresh Milk", price: 2.80, image: "https://picsum.photos/300/200?random=4" },
+  { name: "Eggs (12 Pack)", price: 4.50, image: "https://picsum.photos/300/200?random=5" },
+  { name: "Orange Juice", price: 3.75, image: "https://picsum.photos/300/200?random=6" }
+];
+
+const discountedProducts = [
+  { name: "Cereal - 20% off", price: 3.00, image: "https://picsum.photos/300/200?random=7" },
+  { name: "Pasta - 15% off", price: 1.50, image: "https://picsum.photos/300/200?random=8" },
+  { name: "Chips - 10% off", price: 2.25, image: "https://picsum.photos/300/200?random=9" },
+  { name: "Canned Beans - 25% off", price: 1.00, image: "https://picsum.photos/300/200?random=10" }
+];
+
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [products, setProducts] = useState([
-    // Your product list here
-    { id: 1, name: 'Apple', price: 0.5, image: 'https://picsum.photos/200/200?random=1' },
-    { id: 2, name: 'Banana', price: 0.3, image: 'https://picsum.photos/200/200?random=2' },
-    { id: 3, name: 'Orange', price: 0.4, image: 'https://picsum.photos/200/200?random=3' },
-    // Add more products as needed
-  ]);
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', darkMode);
+  }, [darkMode]);
 
   const addToCart = (name, price) => {
-    setCartItems([...cartItems, { name, price }]);
+    setCart([...cart, { name, price }]);
+    setTotal(prevTotal => prevTotal + price);
   };
 
   const toggleCart = () => {
@@ -31,47 +46,30 @@ function App() {
   };
 
   const checkout = () => {
-    alert('Thank you for your purchase!');
-    setCartItems([]);
+    alert(`Thank you for your purchase! Total: $${total.toFixed(2)}`);
+    setCart([]);
+    setTotal(0);
     setIsCartOpen(false);
   };
 
-  const handleSearch = useCallback((searchTerm) => {
-    const lowercasedTerm = searchTerm.toLowerCase();
-    const filtered = products.filter(product => 
-      product.name.toLowerCase().includes(lowercasedTerm)
-    );
-    setFilteredProducts(filtered);
-  }, [products]);
-
-  // Reset filtered products when products change
-  useEffect(() => {
-    setFilteredProducts(products);
-  }, [products]);
-
   return (
-    <div className={`App ${darkMode ? 'dark' : 'light'}`}>
-      <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
-      <Header 
-        cartCount={cartItems.length} 
-        toggleCart={toggleCart} 
-        onSearch={handleSearch}
-      />
-      <Hero />
-      <Categories />
-      <ProductList products={filteredProducts} addToCart={addToCart} />
-      <DiscountedProducts 
-        products={products.filter(p => p.discounted)} 
-        addToCart={addToCart} 
-      />
-      <CartModal 
-        isOpen={isCartOpen} 
-        cart={cartItems} 
-        total={cartItems.reduce((sum, item) => sum + item.price, 0)}
+    <div className="min-h-screen flex flex-col">
+      <Header cartCount={cart.length} toggleCart={toggleCart} />
+      <main className="flex-grow">
+        <Hero />
+        <Categories />
+        <ProductList products={products} addToCart={addToCart} />
+        <DiscountedProducts products={discountedProducts} addToCart={addToCart} />
+      </main>
+      <CartModal
+        isOpen={isCartOpen}
+        cart={cart}
+        total={total}
         toggleCart={toggleCart}
         checkout={checkout}
       />
       <Footer />
+      <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
     </div>
   );
 }
